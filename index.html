@@ -219,20 +219,23 @@ body {
   width: 100%;
 }
 
-/* 📸 GALLERY (UPDATED → TALL / PORTRAIT STYLE) */
+/* 📸 GALLERY (LESS ZOOM + TALL + CLEAN) */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
   width: 80%;
   margin: 40px auto;
 }
 
+/* 💎 KEY CHANGE HERE */
 .gallery img {
   width: 100%;
-  aspect-ratio: 3 / 4;   /* 🔥 makes images taller instead of wide */
-  object-fit: cover;
-  border-radius: 10px;
+  aspect-ratio: 2 / 3;     /* tall portrait shape */
+  object-fit: contain;     /* 🔥 stops heavy zoom/cropping */
+  background: rgba(255,255,255,0.03); /* fills empty space nicely */
+  padding: 6px;
+  border-radius: 12px;
 }
 
 </style>
