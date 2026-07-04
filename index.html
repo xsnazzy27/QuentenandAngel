@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forever Begins 🤍</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #07070a;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🌙 BACKGROUND */
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #1a0f14, #07070a 60%, #050507);
+  z-index: -10;
+}
+
+/* 💖 HEARTS */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -8;
+}
+
+.hearts span {
+  position: absolute;
+  color: rgba(255, 60, 100, 0.35);
+  font-size: 18px;
+  animation: floatHearts linear infinite;
+}
+
+.hearts span.outline {
+  color: rgba(255,255,255,0.2);
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+}
+
+/* 🎬 INTRO */
+.intro {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  letter-spacing: 3px;
+  z-index: 1000;
+  animation: fadeOut 2s ease 3s forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* MAIN */
+.main {
+  opacity: 0;
+  animation: fadeIn 2s ease 3.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* TITLE */
+.title {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 28px;
+}
+
+/* 💍 VOW BUTTONS */
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.vow-wrap {
+  text-align: center;
+}
+
+.vow-glow {
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(177,18,38,0.2);
+  transition: 0.4s;
+}
+
+.vow-glow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(177,18,38,0.5);
+}
+
+.vow-btn {
+  width: 180px;
+  height: 120px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.vow-label {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* 💌 MODAL */
+.vow-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.vow-overlay.show {
+  display: flex;
+}
+
+.vow-box {
+  background: #f6f2ee;
+  color: #222;
+  width: 450px;
+  padding: 28px;
+  border-radius: 12px;
+  position: relative;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* typing cursor */
+.vow-box p::after {
+  content: "|";
+  animation: blink 0.8s infinite;
+  margin-left: 2px;
+  color: #8B0000;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 8px 12px;
+  border: none;
+  background: #8B0000;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* 🎵 MUSIC */
+.music-card {
+  width: 320px;
+  margin: 40px auto;
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+}
+
+.music-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.play-btn {
+  background: #8B0000;
+  border: none;
+  color: white;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.music-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.music-title {
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.music-sub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.volume-wrap {
+  margin-top: 12px;
+}
+
+.volume-wrap input {
+  width: 100%;
+}
+
+/* 📸 GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 80%;
+  margin: 40px auto;
+}
+
+.gallery img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro">Forever Begins 7.5.26🤍</div>
+
+<div class="main">
+
+<div class="bg"></div>
+<div class="hearts" id="hearts"></div>
+
+<div class="title">Quenten and Angel 🤍</div>
+
+<!-- 💍 VOW BUTTONS -->
+<div class="container">
+
+  <div class="vow-wrap">
+    <div class="vow-glow">
+      <div class="vow-btn" onclick="openVow('her')">Her Vows</div>
+    </div>
+  </div>
+
+  <div class="vow-wrap">
+    <div class="vow-glow">
+      <div class="vow-btn" onclick="openVow('his')">His Vows</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 💌 MODALS -->
+<div class="vow-overlay" id="herOverlay">
+  <div class="vow-box">
+    <h2>Her Vows</h2>
+    <p id="herText"></p>
+    <button class="close-btn" onclick="closeVows()">Close</button>
+  </div>
+</div>
+
+<div class="vow-overlay" id="hisOverlay">
+  <div class="vow-box">
+    <h2>His Vows</h2>
+    <p id="hisText"></p>
+    <button class="close-btn" onclick="closeVows()">Close</button>
+  </div>
+</div>
+
+<!-- 🎵 MUSIC -->
+<div class="music-card">
+
+  <div class="music-row">
+    <button class="play-btn" onclick="toggleMusic()">▶</button>
+
+    <div class="music-text">
+      <div class="music-title">OUR SONG</div>
+      <div class="music-sub">All I Need is You - Chris Brown</div>
+    </div>
+  </div>
+
+  <div class="volume-wrap">
+    <input type="range" min="0" max="1" step="0.01" onchange="setVolume(this.value)">
+  </div>
+
+</div>
+
+<audio id="song" loop>
+<source src="song.mp3">
+</audio>
+
+<!-- 📸 GALLERY -->
+<div class="gallery">
+  <!-- Row 1 -->
+  <img src="couple1.jpg" alt="Couple Photo 1">
+  <img src="couple2.jpg" alt="Couple Photo 2">
+  <img src="couple3.jpg" alt="Couple Photo 3">
+
+  <!-- Row 2 -->
+  <img src="couple4.jpg" alt="Couple Photo 4">
+  <img src="couple5.jpg" alt="Couple Photo 5">
+  <img src="couple6.jpg" alt="Couple Photo 6">
+
+  <!-- Row 3 -->
+  <img src="couple7.jpg" alt="Couple Photo 7">
+  <img src="couple8.jpg" alt="Couple Photo 8">
+  <img src="couple9.jpg" alt="Couple Photo 9">
+</div>
+
+<script>
+
+let song = document.getElementById("song");
+
+/* 💖 HEARTS */
+function createHearts() {
+  const hearts = document.getElementById("hearts");
+  const symbols = ["♡","♥"];
+
+  for (let i = 0; i < 60; i++) {
+    let s = document.createElement("span");
+    s.innerHTML = symbols[Math.random() > 0.5 ? 0 : 1];
+    if (Math.random() > 0.5) s.classList.add("outline");
+
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.animationDuration = (6 + Math.random() * 8) + "s";
+    s.style.fontSize = (10 + Math.random() * 20) + "px";
+
+    hearts.appendChild(s);
+  }
+}
+createHearts();
+
+/* 💍 PARAGRAPH VOWS (IDENTICAL) */
+const herVows = [
+"My baby. ❤️",
+
+"Choosing you has been the best decision I've ever made. I never could've imagined my life with anyone else, and I honestly don't want to. You make my world feel complete. You're my peace, my happiness, and my favorite person. You're the orange to my black, the ying to my yang, and somehow you always know how to make even my worst days feel okay.",
+
+"Some of my favorite memories will always be ours. The nonstop phone calls, staying up way too late just talking about everything and nothing, and somehow never running out of things to say. Sitting by the water for hours, just talking with you, will forever be one of my favorite places to be because as long as I'm with you, I'm home. And I don't think anything will ever beat all the hours and hours we spent at Pit Stop together. Those moments may have seemed simple, but they're the memories I'll cherish forever.",
+
+"I promise to choose you every single day for the rest of my life. I promise to be with you through every bump in the road, every high, every low, and everything in between. No matter what life throws at us, you'll never have to face it alone because you'll always have me right beside you.",
+
+"I promise to love you through every season of life, to always be your biggest supporter, and to cheer you on in everything you do. I promise to smile every time you sing me your little love songs because those are some of my favorite moments with you. I promise to keep laughing with you, growing with you, and making a lifetime of memories together.",
+
+"And I have one more promise.. I promise I'll try not to rage you as much. But let's be honest, if I didn't mess with you just a little, it probably wouldn't feel like a normal day. ❤️",
+
+"Most importantly, I promise to never stop loving you. I'll keep choosing you over and over again because you're my person, my best friend, and the love of my life. And if there's one thing I know for sure, it's that I'll always say I love you more than you love me... even if we spend forever arguing about who's right.",
+
+"I love you forever, my baby. Always and forever. ❤️"
+];
+
+const hisVows = [
+"I vow to be the best parts of me that perfectly fits with the best parts of you.",
+
+"I vow to be the one who sacrifices their side of the bed when you claim more of the bed in your sleep.",
+
+"I vow to pretend that your cooking is the best thing i've ever tasted even if its just cereal.",
+
+"I promise to let you win at video games just to keep your ego intact.",
+
+"I love you unconditianally and without hesitation, I vow to love you, encourage you, trust you and respect you.",
+
+"Everyday I wake up I choose you as my wife, I promise to love you in everything I do, through laughter and tears and to grow and create a beautiful life with you.",
+
+"You love me in a way I never knew was possible you my wife complete my heart.",
+
+"Today surrounded by loved ones I choose you to be my wife, I'm proud to be your husband and I promise to always stand by your side no matter what life brings, you my wife are my everything my whole world the person I live my life for, the person I wanna spend every 24hours in a day with, you are the love of my life."
+];
+
+function typeVows(element, lines) {
+  element.innerHTML = "";
+  let i = 0;
+
+  function typeLine() {
+    if (i >= lines.length) return;
+
+    const p = document.createElement("p");
+    p.style.marginBottom = "18px";
+    p.style.lineHeight = "1.6";
+    element.appendChild(p);
+
+    let c = 0;
+
+    const interval = setInterval(() => {
+      p.innerHTML += lines[i].charAt(c);
+      c++;
+
+      if (c >= lines[i].length) {
+        clearInterval(interval);
+        i++;
+        setTimeout(typeLine, 500);
+      }
+    }, 22);
+  }
+
+  typeLine();
+}
+
+function openVow(type) {
+  if (type === "her") {
+    document.getElementById("herOverlay").classList.add("show");
+    typeVows(document.getElementById("herText"), herVows);
+  }
+
+  if (type === "his") {
+    document.getElementById("hisOverlay").classList.add("show");
+    typeVows(document.getElementById("hisText"), hisVows);
+  }
+}
+
+function closeVows() {
+  document.getElementById("herOverlay").classList.remove("show");
+  document.getElementById("hisOverlay").classList.remove("show");
+}
+
+/* 🎵 MUSIC */
+let playing = false;
+
+function toggleMusic() {
+  if (!playing) {
+    song.play();
+    playing = true;
+  } else {
+    song.pause();
+    playing = false;
+  }
+}
+
+function setVolume(v) {
+  song.volume = v;
+}
+
+</script>
+
+</body>
+</html>
